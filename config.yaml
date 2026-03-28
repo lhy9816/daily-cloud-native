@@ -1,0 +1,108 @@
+sources:
+  github:
+    token: "${GITHUB_TOKEN}"
+    keywords:
+      - kubernetes
+      - cloud-native
+      - llm-inference
+      - ai-agent
+      - gpu-scheduling
+      - volcano
+      - kserve
+      - triton
+      - vllm
+      - karpenter
+      - cluster-api
+      - kube-bench
+      - rancher
+      - k3s
+      - crossplane
+      - argo
+      - backstage
+      - kyverno
+      - open-telemetry
+      - cilium
+      - istio
+      - envoy
+    watch_repos:
+      - "kubernetes/kubernetes"
+      - "cilium/cilium"
+      - "istio/istio"
+      - "envoyproxy/envoy"
+      - "prometheus/prometheus"
+      - "argoproj/argo-cd"
+      - "volcano-sh/volcano"
+      - "kserve/kserve"
+      - "vllm-project/vllm"
+      - "triton-inference-server/triton"
+      - "langchain-ai/langchain"
+      - "crewAIInc/crewAI"
+      - "open-telemetry/opentelemetry"
+      - "kyverno/kyverno"
+      - "crossplane/crossplane"
+      - "kubeflow/kubeflow"
+      - "dapr/dapr"
+      - "knative/serving"
+  arxiv:
+    categories:
+      - "cs.DC"
+      - "cs.SE"
+      - "cs.LG"
+    keywords:
+      - kubernetes
+      - container
+      - cloud-native
+      - scheduling
+      - inference
+      - LLM serving
+      - GPU
+      - cluster
+      - MLOps
+      - AI agent
+      - operator
+      - service mesh
+      - observability
+      - ebpf
+      - serverless
+    max_results: 30
+  cncf:
+    feeds:
+      - "https://www.cncf.io/feed/"
+      - "https://kubernetes.io/feed.xml"
+    hours: 48
+  blogs:
+    feeds:
+      - "https://www.infoq.com/feed/"
+      - "https://thenewstack.io/feed/"
+      - "https://aws.amazon.com/blogs/containers/feed/"
+      - "https://cloud.google.com/blog/feed"
+    hours: 48
+  wechat:
+    rsshub_url: "http://localhost:1200"
+    accounts:
+      - "cloud-native-lab"
+      - "KubeSphere"
+      - "DaoCloud"
+      - "aliyun-cloudnative"
+
+llm:
+  provider: "openai"
+  model: "glm-5"
+  api_key: "${LLM_API_KEY}"
+  base_url: "https://aiproxy.xin/cosphere/v1"
+  batch_size: 6
+  max_output_tokens: 2000
+
+feishu:
+  webhook_url: "${FEISHU_WEBHOOK_URL}"
+
+github_archive:
+  repo_path: "."
+  content_dir: "content"
+  remote: "origin"
+  branch: "main"
+
+schedule:
+  timezone: "Asia/Shanghai"
+  time: "08:00"
+  timeout_minutes: 10
