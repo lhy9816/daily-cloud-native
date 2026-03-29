@@ -77,16 +77,14 @@ sources:
       - "https://aws.amazon.com/blogs/containers/feed/"
       - "https://cloud.google.com/blog/feed"
     hours: 48
-  wechat:
+  tech_media:
     rsshub_url: "http://localhost:1200"
-    hours: 168
-    accounts:
-      - "云原生实验室"
-      - "容器魔方"
-      - "阿里云云原生"
-      - "量子位"
-      - "机器之心"
-      - "DaoCloud"
+    hours: 48
+    feeds:
+      - name: "36kr-24h-hot"
+        path: "36kr/hot-list"
+      - name: "36kr-newsflashes"
+        path: "36kr/newsflashes"
 
 llm:
   provider: "openai"

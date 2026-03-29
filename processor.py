@@ -17,14 +17,14 @@ CATEGORY_MAP = {
     SourceType.GITHUB: ("GitHub", "🐙"),
     SourceType.CNCF: ("CNCF / K8s", "☁️"),
     SourceType.BLOG: ("技术博客", "📝"),
-    SourceType.WECHAT: ("公众号", "💬"),
+    SourceType.TECH_MEDIA: ("科技媒体", "📰"),
 }
 
 PROMPT_MAP = {
     SourceType.ARXIV: "prompts/paper_prompt.md",
     SourceType.GITHUB: "prompts/github_prompt.md",
     SourceType.BLOG: "prompts/blog_prompt.md",
-    SourceType.WECHAT: "prompts/wechat_prompt.md",
+    SourceType.TECH_MEDIA: "prompts/blog_prompt.md",
 }
 
 

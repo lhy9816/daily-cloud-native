@@ -9,33 +9,37 @@ from collectors.base import BaseCollector
 logger = logging.getLogger(__name__)
 
 
-class WeChatCollector(BaseCollector):
+class TechMediaCollector(BaseCollector):
     def __init__(self, config: dict):
         super().__init__(config)
         self.rsshub_url = config.get("rsshub_url", "http://localhost:1200")
-        self.accounts = config.get("accounts", [])
+        self.feeds = config.get("feeds", [])
 
     @property
     def source_name(self) -> str:
-        return "wechat"
+        return "tech_media"
 
     async def collect(self) -> list[RawItem]:
         items = []
-        hours = self.config.get("hours", 168)
+        hours = self.config.get("hours", 48)
         cutoff = datetime.now(timezone.utc) - timedelta(hours=hours)
 
         async with httpx.AsyncClient(timeout=30) as client:
-            for account in self.accounts:
-                feed_url = f"{self.rsshub_url}/wechat/sogou/{account}"
+            for feed in self.feeds:
+                feed_name = feed.get("name", feed.get("path", "unknown"))
+                feed_path = feed.get("path", "")
+                if not feed_path:
+                    continue
+                feed_url = f"{self.rsshub_url}/{feed_path}"
                 try:
                     resp = await client.get(feed_url)
                     if resp.status_code != 200:
-                        logger.warning(f"wechat: {account} returned {resp.status_code}")
+                        logger.warning(f"tech_media: {feed_name} returned {resp.status_code}")
                         continue
 
-                    feed = feedparser.parse(resp.text)
-                    account_items = 0
-                    for entry in feed.entries:
+                    feed_data = feedparser.parse(resp.text)
+                    feed_items = 0
+                    for entry in feed_data.entries:
                         published = self._parse_time(entry)
                         if published and published < cutoff:
                             continue
@@ -44,18 +48,18 @@ class WeChatCollector(BaseCollector):
                         items.append(RawItem(
                             title=entry.get("title", ""),
                             url=entry.get("link", ""),
-                            source_type=SourceType.WECHAT,
+                            source_type=SourceType.TECH_MEDIA,
                             content=entry.get("summary", "") or entry.get("description", ""),
                             published_at=published,
                             extra={
-                                "account": account,
+                                "feed": feed_name,
                                 "author": entry.get("author", ""),
                             },
                         ))
-                        account_items += 1
-                    logger.info(f"wechat: {account} collected {account_items} items")
+                        feed_items += 1
+                    logger.info(f"tech_media: {feed_name} collected {feed_items} items")
                 except Exception as e:
-                    logger.error(f"wechat: {account} failed - {e}")
+                    logger.error(f"tech_media: {feed_name} failed - {e}")
 
         return items
 

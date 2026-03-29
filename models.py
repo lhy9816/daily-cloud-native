@@ -9,7 +9,7 @@ class SourceType(str, Enum):
     CNCF = "cncf"
     ARXIV = "arxiv"
     BLOG = "blog"
-    WECHAT = "wechat"
+    TECH_MEDIA = "tech_media"
 
 
 class Recommendation(str, Enum):
