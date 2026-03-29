@@ -79,11 +79,14 @@ sources:
     hours: 48
   wechat:
     rsshub_url: "http://localhost:1200"
+    hours: 168
     accounts:
-      - "cloud-native-lab"
-      - "KubeSphere"
+      - "云原生实验室"
+      - "容器魔方"
+      - "阿里云云原生"
+      - "量子位"
+      - "机器之心"
       - "DaoCloud"
-      - "aliyun-cloudnative"
 
 llm:
   provider: "openai"
