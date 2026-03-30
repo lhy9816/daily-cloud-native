@@ -58,7 +58,7 @@ async def run_collectors(config: dict, logger: logging.Logger, args: argparse.Na
         if args.no_github_token:
             gh_config = {**gh_config, "token": ""}
         collectors.append(GitHubCollector(gh_config))
-    if not args.skip_cncf:
+    if not args.skip_cncf and "cncf" in config["sources"]:
         collectors.append(CNCFCollector(config["sources"]["cncf"]))
     if not args.skip_arxiv:
         collectors.append(ArXivCollector(config["sources"]["arxiv"]))

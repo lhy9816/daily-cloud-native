@@ -36,6 +36,9 @@ class RSSCollector(BaseCollector):
         for key in ("published_parsed", "updated_parsed"):
             parsed = entry.get(key)
             if parsed:
-                ts = time.mktime(parsed)
-                return datetime.fromtimestamp(ts, tz=timezone.utc)
+                try:
+                    ts = time.mktime(parsed)
+                    return datetime.fromtimestamp(ts, tz=timezone.utc)
+                except (OverflowError, OSError, ValueError):
+                    continue
         return None
