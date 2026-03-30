@@ -9,82 +9,44 @@ sources:
       - gpu-scheduling
       - volcano
       - kserve
-      - triton
       - vllm
       - karpenter
-      - cluster-api
-      - kube-bench
-      - rancher
-      - k3s
-      - crossplane
-      - argo
-      - backstage
-      - kyverno
-      - open-telemetry
       - cilium
       - istio
       - envoy
-    watch_repos:
+    watch_repos: []
+  arxiv:
+    rss_url: "https://rss.arxiv.org/rss/cs.DC+cs.SE+cs.LG"
+    hours: 72
+  blogs:
+    feeds:
+      - "https://kubernetes.io/feed.xml"
+      - "https://www.cncf.io/blog/feed/"
+      - "https://istio.io/latest/blog/feed.xml"
+      - "https://blog.crossplane.io/rss/"
+      - "https://aws.amazon.com/blogs/containers/feed/"
+      - "https://aws.amazon.com/blogs/machine-learning/feed/"
+      - "https://huggingface.co/blog/feed.xml"
+      - "https://thenewstack.io/feed/"
+      - "https://www.hashicorp.com/blog/feed.xml"
+      - "https://developer.nvidia.com/blog/feed/"
+      - "https://github.blog/engineering/feed/"
+      - "https://www.qikqiak.com/index.xml"
+    hours: 72
+  github_releases:
+    repos:
       - "kubernetes/kubernetes"
       - "cilium/cilium"
       - "istio/istio"
-      - "envoyproxy/envoy"
       - "prometheus/prometheus"
-      - "argoproj/argo-cd"
-      - "volcano-sh/volcano"
-      - "kserve/kserve"
+      - "envoyproxy/envoy"
+      - "kubernetes-sigs/karpenter"
       - "vllm-project/vllm"
-      - "triton-inference-server/triton"
-      - "langchain-ai/langchain"
-      - "crewAIInc/crewAI"
-      - "open-telemetry/opentelemetry"
-      - "kyverno/kyverno"
-      - "crossplane/crossplane"
-      - "kubeflow/kubeflow"
-      - "dapr/dapr"
-      - "knative/serving"
-  arxiv:
-    categories:
-      - "cs.DC"
-      - "cs.SE"
-      - "cs.LG"
-    keywords:
-      - kubernetes
-      - container
-      - cloud-native
-      - scheduling
-      - inference
-      - LLM serving
-      - GPU
-      - cluster
-      - MLOps
-      - AI agent
-      - operator
-      - service mesh
-      - observability
-      - ebpf
-      - serverless
-    max_results: 30
-  cncf:
-    feeds:
-      - "https://www.cncf.io/feed/"
-      - "https://kubernetes.io/feed.xml"
-    hours: 48
-  blogs:
-    feeds:
-      - "https://www.infoq.com/feed/"
-      - "https://thenewstack.io/feed/"
-      - "https://aws.amazon.com/blogs/containers/feed/"
-      - "https://cloud.google.com/blog/feed"
-    hours: 48
-  tech_media:
-    rsshub_url: "http://localhost:1200"
-    hours: 48
-    feeds:
-      - name: "36kr-24h-hot"
-        path: "36kr/hot-list"
-      - name: "36kr-newsflashes"
-        path: "36kr/newsflashes"
+      - "ray-project/ray"
+      - "huggingface/transformers"
+      - "kedacore/keda"
+      - "open-policy-agent/gatekeeper"
+    hours: 72
 
 llm:
   provider: "openai"

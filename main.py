@@ -15,6 +15,7 @@ from collectors.cncf import CNCFCollector
 from collectors.arxiv import ArXivCollector
 from collectors.blogs import BlogsCollector
 from collectors.tech_media import TechMediaCollector
+from collectors.github_releases import GitHubReleasesCollector
 from notifier import send_to_feishu
 from archiver import archive_to_github
 
@@ -26,7 +27,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--skip-cncf", action="store_true", help="Skip CNCF collector")
     parser.add_argument("--skip-arxiv", action="store_true", help="Skip ArXiv collector")
     parser.add_argument("--skip-blogs", action="store_true", help="Skip blogs collector")
-    parser.add_argument("--skip-tech-media", action="store_true", help="Skip tech media collector (36kr/zhihu)")
+    parser.add_argument("--skip-github-releases", action="store_true", help="Skip GitHub releases collector")
+    parser.add_argument("--skip-tech-media", action="store_true", help="Skip tech media collector")
     parser.add_argument("--skip-feishu", action="store_true", help="Skip Feishu push")
     parser.add_argument("--skip-archive", action="store_true", help="Skip GitHub archive")
     parser.add_argument("--dry-run", action="store_true", help="Collect and analyze only, no push")
@@ -64,6 +66,8 @@ async def run_collectors(config: dict, logger: logging.Logger, args: argparse.Na
         collectors.append(BlogsCollector(config["sources"]["blogs"]))
     if not args.skip_tech_media and "tech_media" in config["sources"]:
         collectors.append(TechMediaCollector(config["sources"]["tech_media"]))
+    if not args.skip_github_releases and "github_releases" in config["sources"]:
+        collectors.append(GitHubReleasesCollector(config["sources"]["github_releases"]))
 
     all_items: list[RawItem] = []
     tasks = []
